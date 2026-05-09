@@ -5,29 +5,25 @@
     "appearanceTools": true,
     "color": {
       "palette": [
-        { "slug": "ichraka-primary",        "color": "#E8780A", "name": "Ichraka — Orange" },
-        { "slug": "ichraka-primary-dark",   "color": "#C4640A", "name": "Ichraka — Orange foncé" },
-        { "slug": "ichraka-primary-light",  "color": "#FFA640", "name": "Ichraka — Orange clair" },
-        { "slug": "ichraka-secondary",      "color": "#2980B9", "name": "Ichraka — Bleu" },
-        { "slug": "ichraka-secondary-dark", "color": "#1F5F8B", "name": "Ichraka — Bleu foncé" },
-        { "slug": "ichraka-accent",         "color": "#27AE60", "name": "Ichraka — Vert (don)" },
-        { "slug": "ichraka-text",           "color": "#2C3E50", "name": "Texte principal" },
-        { "slug": "ichraka-text-light",     "color": "#5D6D7E", "name": "Texte secondaire" },
-        { "slug": "ichraka-bg",             "color": "#FFFFFF", "name": "Fond blanc" },
-        { "slug": "ichraka-bg-soft",        "color": "#FDF6EE", "name": "Fond crème" },
-        { "slug": "ichraka-bg-section",     "color": "#F8F9FA", "name": "Fond gris clair" }
+        { "slug": "ichraka-cream",       "color": "#FFF6E2", "name": "Cream" },
+        { "slug": "ichraka-cream-2",     "color": "#FFEFCC", "name": "Cream foncé" },
+        { "slug": "ichraka-ink",         "color": "#14213D", "name": "Encre" },
+        { "slug": "ichraka-ink-soft",    "color": "#4A5577", "name": "Encre douce" },
+        { "slug": "ichraka-yellow",      "color": "#FFD23F", "name": "Jaune" },
+        { "slug": "ichraka-yellow-deep", "color": "#F5A623", "name": "Jaune foncé" },
+        { "slug": "ichraka-coral",       "color": "#FF6B6B", "name": "Corail" },
+        { "slug": "ichraka-coral-deep",  "color": "#E54B5C", "name": "Corail foncé" },
+        { "slug": "ichraka-mint",        "color": "#2DD4BF", "name": "Menthe" },
+        { "slug": "ichraka-mint-deep",   "color": "#0EA98D", "name": "Menthe foncée" },
+        { "slug": "ichraka-sky",         "color": "#4FB3F0", "name": "Ciel" },
+        { "slug": "ichraka-sky-deep",    "color": "#2E8FD0", "name": "Ciel foncé" },
+        { "slug": "ichraka-plum",        "color": "#8E5BD9", "name": "Prune" }
       ],
       "gradients": [
-        {
-          "slug": "ichraka-sunrise",
-          "name": "Lever de soleil Ichraka",
-          "gradient": "linear-gradient(135deg,#FFF4E5 0%,#FFE0B3 100%)"
-        },
-        {
-          "slug": "ichraka-blue",
-          "name": "Bleu Ichraka",
-          "gradient": "linear-gradient(135deg,#2980B9 0%,#1F5F8B 100%)"
-        }
+        { "slug": "ichraka-hero",        "name": "Hero (corail / jaune / menthe)", "gradient": "linear-gradient(160deg,#FF6B6B,#FFD23F 60%,#2DD4BF)" },
+        { "slug": "ichraka-cartables",   "name": "Cartables",                       "gradient": "linear-gradient(160deg,#FFB800,#FF7E51)" },
+        { "slug": "ichraka-vetements",   "name": "Vêtements",                       "gradient": "linear-gradient(160deg,#FF8A8A,#8E5BD9)" },
+        { "slug": "ichraka-lunettes",    "name": "Lunettes",                        "gradient": "linear-gradient(160deg,#5DEAD3,#4FB3F0)" }
       ],
       "custom": false,
       "customGradient": true,
@@ -35,28 +31,16 @@
     },
     "typography": {
       "fontFamilies": [
-        {
-          "slug": "heading",
-          "name": "Montserrat (titres)",
-          "fontFamily": "'Montserrat','Helvetica Neue',Arial,sans-serif"
-        },
-        {
-          "slug": "body",
-          "name": "Open Sans (texte)",
-          "fontFamily": "'Open Sans','Helvetica Neue',Arial,sans-serif"
-        },
-        {
-          "slug": "arabic",
-          "name": "Cairo (arabe)",
-          "fontFamily": "'Cairo','Tajawal','Segoe UI',sans-serif"
-        }
+        { "slug": "display", "name": "Bricolage Grotesque (display)", "fontFamily": "'Bricolage Grotesque', system-ui, sans-serif" },
+        { "slug": "body",    "name": "Manrope (corps)",                "fontFamily": "'Manrope', system-ui, sans-serif" },
+        { "slug": "arabic",  "name": "Cairo (arabe)",                  "fontFamily": "'Cairo', 'Tajawal', system-ui, sans-serif" }
       ],
       "fontSizes": [
-        { "slug": "small",   "size": "0.875rem", "name": "Petit" },
-        { "slug": "medium",  "size": "1rem",     "name": "Moyen" },
-        { "slug": "large",   "size": "1.25rem",  "name": "Grand" },
-        { "slug": "x-large", "size": "1.75rem",  "name": "Très grand" },
-        { "slug": "xx-large","size": "2.5rem",   "name": "Énorme" }
+        { "slug": "small",    "size": "0.85rem", "name": "Petit" },
+        { "slug": "medium",   "size": "1rem",    "name": "Moyen" },
+        { "slug": "large",    "size": "1.2rem",  "name": "Grand" },
+        { "slug": "x-large",  "size": "2rem",    "name": "Très grand" },
+        { "slug": "xx-large", "size": "3.5rem",  "name": "Énorme" }
       ],
       "fluid": true,
       "lineHeight": true,
@@ -68,107 +52,81 @@
       "padding": true,
       "margin": true,
       "blockGap": true,
-      "units": ["px", "rem", "em", "%", "vw", "vh"],
-      "spacingScale": {
-        "operator": "*",
-        "increment": 1.5,
-        "steps": 7,
-        "mediumStep": 1.5,
-        "unit": "rem"
-      }
+      "units": ["px", "rem", "em", "%", "vw", "vh"]
     },
     "layout": {
       "contentSize": "880px",
-      "wideSize": "1200px"
+      "wideSize": "1480px"
     },
     "border": {
       "color": true,
       "radius": true,
       "style": true,
       "width": true
-    },
-    "blocks": {
-      "core/button": {
-        "color": {
-          "palette": [
-            { "slug": "donate", "color": "#27AE60", "name": "Bouton de don" },
-            { "slug": "primary","color": "#E8780A", "name": "Bouton principal" }
-          ]
-        }
-      }
     }
   },
   "styles": {
     "color": {
-      "background": "var(--wp--preset--color--ichraka-bg)",
-      "text": "var(--wp--preset--color--ichraka-text)"
+      "background": "var(--wp--preset--color--ichraka-cream)",
+      "text": "var(--wp--preset--color--ichraka-ink)"
     },
     "typography": {
       "fontFamily": "var(--wp--preset--font-family--body)",
       "fontSize": "1rem",
-      "lineHeight": "1.65"
+      "lineHeight": "1.55"
     },
     "elements": {
       "h1": {
         "typography": {
-          "fontFamily": "var(--wp--preset--font-family--heading)",
+          "fontFamily": "var(--wp--preset--font-family--display)",
           "fontWeight": "700",
-          "lineHeight": "1.2",
-          "fontSize": "clamp(2rem,4vw,3rem)"
+          "lineHeight": "0.95",
+          "letterSpacing": "-0.03em",
+          "fontSize": "clamp(3rem,8vw,7rem)"
         }
       },
       "h2": {
         "typography": {
-          "fontFamily": "var(--wp--preset--font-family--heading)",
+          "fontFamily": "var(--wp--preset--font-family--display)",
           "fontWeight": "700",
-          "lineHeight": "1.25",
-          "fontSize": "clamp(1.6rem,3vw,2.25rem)"
+          "lineHeight": "1",
+          "letterSpacing": "-0.025em",
+          "fontSize": "clamp(2.5rem,5.5vw,4.6rem)"
         }
       },
       "h3": {
         "typography": {
-          "fontFamily": "var(--wp--preset--font-family--heading)",
-          "fontWeight": "600",
-          "lineHeight": "1.3",
-          "fontSize": "clamp(1.3rem,2.5vw,1.75rem)"
+          "fontFamily": "var(--wp--preset--font-family--display)",
+          "fontWeight": "700",
+          "lineHeight": "1.15",
+          "fontSize": "1.6rem"
         }
       },
       "link": {
-        "color": { "text": "var(--wp--preset--color--ichraka-primary)" },
+        "color": { "text": "var(--wp--preset--color--ichraka-coral)" },
         ":hover": {
-          "color": { "text": "var(--wp--preset--color--ichraka-primary-dark)" }
+          "color": { "text": "var(--wp--preset--color--ichraka-coral-deep)" }
         }
       },
       "button": {
         "color": {
-          "background": "var(--wp--preset--color--ichraka-primary)",
+          "background": "var(--wp--preset--color--ichraka-coral)",
           "text": "#ffffff"
         },
-        "border": { "radius": "8px" },
+        "border": { "radius": "999px" },
         "spacing": {
           "padding": {
-            "top": "0.85rem",
-            "bottom": "0.85rem",
-            "left": "1.75rem",
-            "right": "1.75rem"
+            "top": "1rem",
+            "bottom": "1rem",
+            "left": "1.6rem",
+            "right": "1.6rem"
           }
         },
         "typography": {
-          "fontFamily": "var(--wp--preset--font-family--heading)",
-          "fontWeight": "600",
-          "textTransform": "uppercase",
-          "letterSpacing": "0.5px"
-        },
-        ":hover": {
-          "color": { "background": "var(--wp--preset--color--ichraka-primary-dark)" }
+          "fontFamily": "var(--wp--preset--font-family--body)",
+          "fontWeight": "700"
         }
       }
     }
-  },
-  "customTemplates": [
-    { "name": "page-accueil",    "title": "Ichraka — Accueil",    "postTypes": ["page"] },
-    { "name": "page-operations", "title": "Ichraka — Opérations", "postTypes": ["page"] },
-    { "name": "page-don",        "title": "Ichraka — Don",        "postTypes": ["page"] },
-    { "name": "page-contact",    "title": "Ichraka — Contact",    "postTypes": ["page"] }
-  ]
+  }
 }

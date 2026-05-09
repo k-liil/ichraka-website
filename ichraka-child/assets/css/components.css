@@ -1,27 +1,87 @@
 /* ==========================================================================
-   Ichraka — composants additionnels (footer, partenaires, formulaires)
+   Ichraka — composants additionnels (direction Joyeux)
+   Bureau / partenaires / pages secondaires
    ========================================================================== */
 
-/* Partenaires grid */
+/* Bureau (équipe) */
+.ichraka-team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+.ichraka-team-member {
+    background: white;
+    padding: 1.75rem 1rem;
+    border-radius: var(--r-lg);
+    text-align: center;
+    transition: transform 0.25s cubic-bezier(.2,0,0,1);
+    border-bottom: 4px solid var(--yellow);
+}
+.ichraka-team-member.accent-coral { border-bottom-color: var(--coral); }
+.ichraka-team-member.accent-mint  { border-bottom-color: var(--mint); }
+.ichraka-team-member.accent-sky   { border-bottom-color: var(--sky); }
+.ichraka-team-member:hover { transform: translateY(-4px); }
+
+.ichraka-team-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: var(--yellow);
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+.accent-coral .ichraka-team-avatar { background: var(--coral); color: white; }
+.accent-mint  .ichraka-team-avatar { background: var(--mint); }
+.accent-sky   .ichraka-team-avatar { background: var(--sky); color: white; }
+
+.ichraka-team-name {
+    font-family: var(--font-display);
+    font-weight: 700;
+    color: var(--ink);
+    margin: 0;
+    font-size: 1.05rem;
+}
+.ichraka-team-role {
+    color: var(--ink-soft);
+    font-size: 0.85rem;
+    margin: 0.3rem 0 0;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+/* Partenaires */
 .ichraka-partners-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
     gap: 1.5rem;
     align-items: center;
     justify-items: center;
+    margin-top: 2rem;
 }
 .ichraka-partner {
     width: 100%;
     aspect-ratio: 3 / 2;
-    background: #fff;
-    border: 1px solid var(--ichraka-border);
-    border-radius: var(--ichraka-radius);
+    background: white;
+    border-radius: var(--r);
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 0.75rem;
-    transition: var(--ichraka-transition);
+    transition: transform 0.2s, box-shadow 0.2s;
     text-align: center;
+    color: var(--ink);
+    text-decoration: none !important;
+}
+.ichraka-partner:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(20, 33, 61, 0.08);
 }
 .ichraka-partner img {
     max-width: 100%;
@@ -29,108 +89,195 @@
     object-fit: contain;
     filter: grayscale(100%);
     opacity: 0.75;
-    transition: var(--ichraka-transition);
+    transition: filter 0.2s, opacity 0.2s;
 }
 .ichraka-partner:hover img {
     filter: grayscale(0%);
     opacity: 1;
 }
 
-/* Donate widget (sidebar) */
-.ichraka-donate-widget {
-    background: linear-gradient(135deg, var(--ichraka-bg-soft) 0%, #fff 100%);
-    padding: 1.5rem;
-    border-radius: var(--ichraka-radius-lg);
-    border-left: 4px solid var(--ichraka-accent);
+/* Pages secondaires — entry-content */
+.ichraka-page-section {
+    padding-block: var(--section-gap);
+}
+.ichraka-page-section .shell {
+    padding-inline: var(--shell-pad);
+    max-width: 1480px;
+    margin-inline: auto;
+}
+.ichraka-page-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+.ichraka-page-header h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    line-height: 0.98;
+    letter-spacing: -0.025em;
+}
+.ichraka-page-header .lead {
+    color: var(--ink-soft);
+    font-size: 1.2rem;
+    margin-top: 1.5rem;
+    max-width: 60ch;
+    margin-inline: auto;
+}
+
+.entry-content {
+    max-width: 720px;
+    margin-inline: auto;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--ink-soft);
+}
+.entry-content h2 {
+    margin-top: 2.5rem;
+    color: var(--ink);
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+}
+.entry-content h3 {
+    margin-top: 2rem;
+    color: var(--ink);
+    font-size: 1.4rem;
+}
+.entry-content ul,
+.entry-content ol {
+    padding-left: 1.5rem;
+    margin: 1rem 0;
+}
+.entry-content li {
+    margin-bottom: 0.5rem;
+}
+.entry-content a {
+    color: var(--coral);
+    border-bottom: 2px solid var(--yellow);
+}
+.entry-content a:hover {
+    color: var(--coral-deep);
+    background: var(--yellow);
+}
+
+/* Breadcrumbs */
+.ichraka-breadcrumbs {
+    background: var(--cream-2);
+    padding: 0.75rem var(--shell-pad);
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    border-bottom: 1px solid var(--line-soft);
+}
+.ichraka-breadcrumbs a {
+    color: var(--coral);
+    border-bottom: 1px dashed var(--coral);
+}
+
+/* Forms (CF7 + basic contact) */
+.wpcf7,
+.ichraka-basic-form {
+    max-width: 720px;
+    margin: 0 auto;
+}
+.wpcf7-form-control,
+.ichraka-basic-form input[type="text"],
+.ichraka-basic-form input[type="email"],
+.ichraka-basic-form textarea {
+    width: 100%;
+    padding: 1rem 1.2rem;
+    border: 2px solid var(--line);
+    border-radius: var(--r);
+    font-family: inherit;
+    font-size: 1rem;
+    background: white;
+    transition: border-color 0.2s;
+}
+.wpcf7-form-control:focus,
+.ichraka-basic-form input:focus,
+.ichraka-basic-form textarea:focus {
+    border-color: var(--coral);
+    outline: 0;
+}
+.wpcf7-submit,
+.ichraka-basic-form button[type="submit"] {
+    width: auto !important;
+    padding: 1rem 2rem !important;
+    background: var(--coral) !important;
+    color: white !important;
+    border: 0 !important;
+    border-radius: 999px !important;
+    font-weight: 700 !important;
+    box-shadow: 0 4px 0 0 var(--coral-deep);
+    cursor: pointer;
+    transition: transform 0.18s, box-shadow 0.2s;
+}
+.wpcf7-submit:hover,
+.ichraka-basic-form button[type="submit"]:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 0 0 var(--coral-deep);
+}
+
+.ichraka-alert--success {
+    background: var(--mint);
+    color: var(--ink);
+    padding: 1rem 1.2rem;
+    border-radius: var(--r);
+    font-weight: 600;
+}
+.ichraka-alert--error {
+    background: var(--coral);
+    color: white;
+    padding: 1rem 1.2rem;
+    border-radius: var(--r);
+    font-weight: 600;
+}
+
+/* Donation block (page Faire un don) */
+.ichraka-donation-block {
+    max-width: 720px;
+    margin: 0 auto;
+    background: white;
+    padding: 2.5rem;
+    border-radius: var(--r-lg);
+    border-top: 6px solid var(--coral);
+    box-shadow: 0 12px 32px rgba(20, 33, 61, 0.06);
     text-align: center;
 }
-body.rtl .ichraka-donate-widget {
-    border-left: 0;
-    border-right: 4px solid var(--ichraka-accent);
+
+/* RIB table */
+.ichraka-rib-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    text-align: left;
 }
-.ichraka-donate-widget h4 {
-    color: var(--ichraka-secondary-dark);
-    margin-top: 0;
+.ichraka-rib-table th,
+.ichraka-rib-table td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--line-soft);
 }
 
-/* Liste opérations widget */
-.ichraka-widget-operations {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-.ichraka-widget-operations li {
-    padding: 0.6rem 0;
-    border-bottom: 1px solid var(--ichraka-border);
-}
-.ichraka-widget-operations li:last-child {
-    border-bottom: 0;
-}
-
-/* Footer columns */
-.ichraka-footer__cols {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 2.5rem;
-}
-.ichraka-footer-widget {
-    color: #D1D5DB;
-}
-.ichraka-footer-widget ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-.ichraka-footer-widget ul li {
-    padding: 0.35rem 0;
-}
-
-/* Astra header — bouton de don bien visible */
-.ast-builder-button-1 .ichraka-header-donate,
-.main-header-bar .ichraka-header-donate {
-    padding: 0.6rem 1.25rem;
-    font-size: 0.85rem;
-}
-
-/* Animation des compteurs */
-.ichraka-counter__number {
-    display: inline-block;
-}
-
-/* Lien "skip to content" pour l'accessibilité */
+/* Skip link */
 .skip-link {
     position: absolute;
     top: -100px;
     left: 0;
-    background: var(--ichraka-primary);
-    color: #fff;
-    padding: 0.5rem 1rem;
+    background: var(--coral);
+    color: white;
+    padding: 0.6rem 1.2rem;
+    border-radius: 999px;
     z-index: 9999;
+    text-decoration: none;
+    font-weight: 700;
 }
 .skip-link:focus {
-    top: 0;
+    top: 1rem;
+    left: 1rem;
 }
 
-/* Ajustements Astra — assurer la cohérence des titres */
-.entry-title { color: var(--ichraka-text); }
-.site-title a { color: var(--ichraka-primary) !important; }
-
-/* Tag/badge "Nouveau" pour les opérations récentes */
-.ichraka-badge {
-    display: inline-block;
-    background: var(--ichraka-primary);
-    color: #fff;
-    padding: 0.15rem 0.6rem;
-    border-radius: 999px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-/* Print — masquer les éléments interactifs */
+/* Print */
 @media print {
-    .ichraka-header-donate,
-    .ichraka-section--soft .ichraka-donation-block,
-    .ichraka-footer { display: none !important; }
+    .announce,
+    .ichraka-nav,
+    .ichraka-footer,
+    .donate,
+    .newsletter { display: none !important; }
+    body.ichraka-theme { background: white; }
 }

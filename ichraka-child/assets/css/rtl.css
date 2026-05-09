@@ -1,89 +1,121 @@
 /* ==========================================================================
-   Ichraka — overrides RTL (arabe)
-   Chargé uniquement quand is_rtl() est vrai côté PHP.
+   Ichraka — RTL overrides (direction Joyeux)
    ========================================================================== */
 
 body.rtl,
 body[dir="rtl"] {
-    font-family: var(--ichraka-font-arabic);
+    font-family: var(--font-arabic);
     text-align: right;
 }
 
-body.rtl h1,
-body.rtl h2,
-body.rtl h3,
-body.rtl h4,
-body.rtl h5,
-body.rtl h6 {
-    font-family: var(--ichraka-font-arabic);
-    font-weight: 700;
-}
-
-/* Boutons : on conserve la même apparence — direction du texte naturelle */
-body.rtl .ichraka-btn {
+body.rtl h1, body.rtl h2, body.rtl h3,
+body.rtl h4, body.rtl h5, body.rtl h6,
+body.rtl .display,
+body.rtl .ichraka-hero-title,
+body.rtl .mission-quote,
+body.rtl .t-quote {
+    font-family: var(--font-arabic);
     letter-spacing: 0;
 }
 
-/* Hero — alignement centré conservé, ordre des CTA inversé */
-body.rtl .ichraka-hero__cta {
+/* Hero — image à gauche du texte en RTL */
+body.rtl .ichraka-hero-grid {
+    direction: rtl;
+}
+body.rtl .ichraka-hero-cta {
     flex-direction: row-reverse;
 }
 
-/* Cartes — flèche du lien "En savoir plus" tournée */
-body.rtl .ichraka-card__link::after {
-    content: " ←";
+/* Pillars — bordures inversées */
+body.rtl .pillar {
+    padding-right: 0;
+    padding-left: 1rem;
+    border-right: none;
+    border-left: 1px solid rgba(255, 246, 226, 0.15);
 }
-body.rtl .ichraka-card__link {
+body.rtl .pillar:last-child { border-left: none; }
+body.rtl .pillar:nth-child(2) {
+    border-left: none;
+}
+
+/* Mission */
+body.rtl .mission-grid { direction: rtl; }
+body.rtl .mission-author { flex-direction: row-reverse; }
+
+/* Op cards */
+body.rtl .op-stats { direction: rtl; }
+body.rtl .op-link { align-self: flex-end; }
+
+/* Counters — chiffres latins conservés (lisibilité) */
+body.rtl .counter-num,
+body.rtl .pillar-num {
+    direction: ltr;
+    unicode-bidi: bidi-override;
+    display: inline-flex;
+}
+
+/* Timeline */
+body.rtl .tl-item {
+    grid-template-columns: 1fr 80px;
+    direction: rtl;
+}
+body.rtl .tl-item > *:first-child { order: 2; }
+body.rtl .tl-item > *:last-child { order: 1; }
+
+/* Testimonials */
+body.rtl .t-card::before {
+    right: auto;
+    left: 1.6rem;
+    content: "\201D";
+}
+body.rtl .t-author { flex-direction: row-reverse; }
+
+/* Donate tiers */
+body.rtl .donate-tiers,
+body.rtl .donate-cta-row,
+body.rtl .donate-trust {
     direction: rtl;
 }
 
-/* Donate widget — bordure inversée */
-body.rtl .ichraka-donate-widget {
-    border-left: 0;
-    border-right: 4px solid var(--ichraka-accent);
+/* Newsletter form */
+body.rtl .nl-form {
+    flex-direction: row-reverse;
+    padding: 0.4rem 1.6rem 0.4rem 0.4rem;
+}
+body.rtl .nl-form input { text-align: right; }
+
+/* Footer */
+body.rtl .ichraka-footer-grid { direction: rtl; }
+body.rtl .ichraka-footer-bottom { direction: rtl; }
+
+/* Logo — wordmark non inversé (latin) */
+body.rtl .ichraka-logo-word {
+    direction: ltr;
+    unicode-bidi: bidi-override;
 }
 
-/* Témoignages — guillemets inversés */
-body.rtl .ichraka-testimonial__quote::before {
-    content: "\201D";
-    margin-left: 0.25rem;
-    margin-right: 0;
+/* Boutons — flèche inversée */
+body.rtl .arrow {
+    transform: scaleX(-1);
+}
+body.rtl .btn:hover .arrow,
+body.rtl a:hover .arrow {
+    transform: scaleX(-1) translate(3px, -3px);
 }
 
-/* Breadcrumbs — séparateurs */
-body.rtl .ichraka-breadcrumbs span[aria-hidden="true"] {
-    display: inline-block;
-    transform: rotate(180deg);
-}
+/* Nav */
+body.rtl .ichraka-nav-row { flex-direction: row-reverse; }
 
-/* Header — bouton de don à gauche en RTL */
-body.rtl .ichraka-header-donate {
-    margin-left: 0;
-    margin-right: 1rem;
-}
-
-/* Listes — bullets à droite */
-body.rtl ul,
-body.rtl ol {
-    padding-right: 1.25rem;
-    padding-left: 0;
-}
-
-/* Formulaires */
+/* Forms */
 body.rtl .wpcf7-form-control,
 body.rtl .ichraka-basic-form input,
 body.rtl .ichraka-basic-form textarea {
     text-align: right;
 }
 
-/* Footer — colonnes mêmes, mais les listes alignées à droite */
-body.rtl .ichraka-footer-widget {
-    text-align: right;
-}
-
-/* Compteurs — chiffres latins conservés (lisibilité) */
-body.rtl .ichraka-counter__number {
-    direction: ltr;
-    unicode-bidi: bidi-override;
-    display: inline-block;
+/* Listes */
+body.rtl .entry-content ul,
+body.rtl .entry-content ol {
+    padding-right: 1.5rem;
+    padding-left: 0;
 }

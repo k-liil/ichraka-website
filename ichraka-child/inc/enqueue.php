@@ -1,6 +1,8 @@
 <?php
 /**
- * Ichraka — chargement des scripts et styles.
+ * Ichraka — chargement des scripts et styles (direction Joyeux).
+ *
+ * Polices : Bricolage Grotesque (display) + Manrope (corps) + Cairo (RTL).
  *
  * @package Ichraka
  */
@@ -9,12 +11,10 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-/**
- * Enqueue parent + child styles, Google Fonts et JS du thème.
- */
 add_action( 'wp_enqueue_scripts', 'ichraka_enqueue_assets', 20 );
 function ichraka_enqueue_assets() {
-    // Parent (Astra) — on s'appuie sur le système Astra pour ne pas dupliquer.
+
+    // Astra (parent) — on conserve la base, mais notre style.css masque son header/footer.
     if ( wp_get_theme()->parent() ) {
         wp_enqueue_style(
             'astra-parent',
@@ -24,15 +24,15 @@ function ichraka_enqueue_assets() {
         );
     }
 
-    // Google Fonts — chargement async via preconnect.
+    // Google Fonts — Bricolage Grotesque + Manrope + Cairo (pour RTL).
     wp_enqueue_style(
         'ichraka-fonts',
-        'https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600;700&family=Cairo:wght@400;600;700&display=swap',
+        'https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Manrope:wght@400;500;600;700;800&family=Cairo:wght@400;600;700&display=swap',
         array(),
         ICHRAKA_VERSION
     );
 
-    // Style enfant principal (style.css à la racine du thème enfant).
+    // Style enfant principal.
     wp_enqueue_style(
         'ichraka-child',
         get_stylesheet_uri(),
@@ -40,7 +40,7 @@ function ichraka_enqueue_assets() {
         ICHRAKA_VERSION
     );
 
-    // Style additionnel modulaire (composants).
+    // Composants additionnels.
     wp_enqueue_style(
         'ichraka-components',
         ICHRAKA_URI . 'assets/css/components.css',
@@ -48,7 +48,7 @@ function ichraka_enqueue_assets() {
         ICHRAKA_VERSION
     );
 
-    // RTL — chargé uniquement si nécessaire.
+    // RTL — surcharges spécifiques.
     if ( is_rtl() ) {
         wp_enqueue_style(
             'ichraka-rtl',
@@ -58,7 +58,7 @@ function ichraka_enqueue_assets() {
         );
     }
 
-    // JS — compteurs animés, scroll, accessibilité.
+    // JS — compteurs animés, tier toggle, scroll fluide.
     wp_enqueue_script(
         'ichraka-main',
         ICHRAKA_URI . 'assets/js/ichraka.js',
@@ -68,15 +68,16 @@ function ichraka_enqueue_assets() {
     );
 
     wp_localize_script( 'ichraka-main', 'IchrakaConfig', array(
-        'restUrl'    => esc_url_raw( rest_url() ),
-        'ajaxUrl'    => admin_url( 'admin-ajax.php' ),
-        'nonce'      => wp_create_nonce( 'ichraka-front' ),
-        'isRtl'      => is_rtl(),
+        'restUrl'   => esc_url_raw( rest_url() ),
+        'ajaxUrl'   => admin_url( 'admin-ajax.php' ),
+        'nonce'     => wp_create_nonce( 'ichraka-front' ),
+        'isRtl'     => is_rtl(),
+        'donateUrl' => ichraka_get_donate_url(),
     ) );
 }
 
 /**
- * Preconnect aux origines de polices pour réduire le CLS.
+ * Preconnect aux origines de polices.
  */
 add_action( 'wp_head', 'ichraka_preconnect_fonts', 1 );
 function ichraka_preconnect_fonts() {
@@ -85,13 +86,13 @@ function ichraka_preconnect_fonts() {
 }
 
 /**
- * Injecte les styles CSS dans l'éditeur Gutenberg pour cohérence visuelle.
+ * Styles dans l'éditeur Gutenberg.
  */
 add_action( 'after_setup_theme', 'ichraka_editor_styles' );
 function ichraka_editor_styles() {
     add_editor_style( array(
         'style.css',
         'assets/css/components.css',
-        'https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600;700&display=swap',
+        'https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Manrope:wght@400;500;600;700;800&display=swap',
     ) );
 }

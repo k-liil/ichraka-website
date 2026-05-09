@@ -1,13 +1,12 @@
 /**
- * Ichraka — script frontal.
+ * Ichraka — script frontal (direction Joyeux).
  *
- * Fonctionnalités :
- *  - Compteurs animés via IntersectionObserver
- *  - Scroll fluide pour les ancres
- *  - Lazy reveal des cartes (.ichraka-card)
- *  - Lightbox simple pour la galerie
+ *  - Compteurs animés (count-up) via IntersectionObserver
+ *  - Toggle des paliers de don sur la home
+ *  - Menu mobile (toggle nav)
+ *  - Scroll fluide sur ancres internes
  *
- * Aucune dépendance — ~3 Ko gzip.
+ * Vanilla JS, ~3 Ko gzip.
  */
 (function () {
     'use strict';
@@ -20,62 +19,106 @@
 
     function init() {
         initCounters();
+        initDonateTiers();
+        initMobileMenu();
         initSmoothScroll();
-        initRevealOnScroll();
-        initGalleryLightbox();
-        initMobileMenuFocusTrap();
     }
 
     /* ----------------------------------------------------------------------
-     * Compteurs animés
+     * Compteurs animés (count-up)
      * -------------------------------------------------------------------- */
-    function initCounters() {
-        var counters = document.querySelectorAll('.ichraka-counter__number');
-        if (!counters.length || !('IntersectionObserver' in window)) {
-            counters.forEach(function (c) {
-                c.textContent = c.dataset.target + (c.dataset.suffix || '');
-            });
-            return;
-        }
-
-        var observer = new IntersectionObserver(function (entries, obs) {
-            entries.forEach(function (entry) {
-                if (entry.isIntersecting) {
-                    animateCounter(entry.target);
-                    obs.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.4 });
-
-        counters.forEach(function (c) { observer.observe(c); });
+    function formatNum(n) {
+        return n >= 1000 ? n.toLocaleString('fr-FR').replace(/,/g, ' ') : String(n);
     }
 
-    function animateCounter(el) {
-        var target = parseInt(el.dataset.target, 10) || 0;
-        var suffix = el.dataset.suffix || '';
-        var duration = 1800;
-        var startTime = performance.now();
-
+    function animateCount(el) {
+        var target = parseInt(el.dataset.count, 10) || 0;
+        var dur = 1600;
+        var start = performance.now();
         function tick(now) {
-            var progress = Math.min((now - startTime) / duration, 1);
-            var eased = 1 - Math.pow(1 - progress, 3); // easeOutCubic
-            var value = Math.floor(eased * target);
-            el.textContent = formatNumber(value) + suffix;
-            if (progress < 1) {
+            var t = Math.min(1, (now - start) / dur);
+            var eased = 1 - Math.pow(1 - t, 3); // easeOutCubic
+            el.textContent = formatNum(Math.floor(target * eased));
+            if (t < 1) {
                 requestAnimationFrame(tick);
             } else {
-                el.textContent = formatNumber(target) + suffix;
+                el.textContent = formatNum(target);
             }
         }
         requestAnimationFrame(tick);
     }
 
-    function formatNumber(n) {
-        return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+    function initCounters() {
+        var counters = document.querySelectorAll('[data-count]');
+        if (!counters.length) return;
+
+        if (!('IntersectionObserver' in window)) {
+            // Fallback : afficher la valeur cible directement
+            counters.forEach(function (el) {
+                el.textContent = formatNum(parseInt(el.dataset.count, 10) || 0);
+            });
+            return;
+        }
+
+        var io = new IntersectionObserver(function (entries) {
+            entries.forEach(function (e) {
+                if (e.isIntersecting) {
+                    animateCount(e.target);
+                    io.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.4 });
+
+        counters.forEach(function (el) { io.observe(el); });
     }
 
     /* ----------------------------------------------------------------------
-     * Scroll fluide
+     * Toggle paliers de don
+     * -------------------------------------------------------------------- */
+    function initDonateTiers() {
+        var tiers = document.querySelectorAll('.tier');
+        var amountLabel = document.getElementById('donate-amount');
+        if (!tiers.length || !amountLabel) return;
+
+        tiers.forEach(function (tier) {
+            tier.addEventListener('click', function () {
+                tiers.forEach(function (o) {
+                    o.classList.remove('active');
+                    o.setAttribute('aria-checked', 'false');
+                });
+                tier.classList.add('active');
+                tier.setAttribute('aria-checked', 'true');
+
+                var amount = parseInt(tier.dataset.amount, 10);
+                amountLabel.textContent = amount.toLocaleString('fr-FR').replace(/,/g, ' ') + ' DH';
+            });
+        });
+    }
+
+    /* ----------------------------------------------------------------------
+     * Menu mobile
+     * -------------------------------------------------------------------- */
+    function initMobileMenu() {
+        var toggle = document.querySelector('.ichraka-nav-toggle');
+        var nav = document.querySelector('.ichraka-nav');
+        if (!toggle || !nav) return;
+
+        toggle.addEventListener('click', function () {
+            var isOpen = nav.classList.toggle('menu-open');
+            toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        });
+
+        // Ferme le menu si on clique sur un lien
+        nav.querySelectorAll('.ichraka-nav-links a').forEach(function (a) {
+            a.addEventListener('click', function () {
+                nav.classList.remove('menu-open');
+                toggle.setAttribute('aria-expanded', 'false');
+            });
+        });
+    }
+
+    /* ----------------------------------------------------------------------
+     * Scroll fluide pour ancres internes
      * -------------------------------------------------------------------- */
     function initSmoothScroll() {
         document.querySelectorAll('a[href^="#"]').forEach(function (link) {
@@ -90,102 +133,6 @@
                     target.focus({ preventScroll: true });
                 }
             });
-        });
-    }
-
-    /* ----------------------------------------------------------------------
-     * Reveal on scroll (cartes)
-     * -------------------------------------------------------------------- */
-    function initRevealOnScroll() {
-        var prefersReduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        if (prefersReduce || !('IntersectionObserver' in window)) return;
-
-        var els = document.querySelectorAll('.ichraka-card, .ichraka-team-member, .ichraka-testimonial');
-        els.forEach(function (el) {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(20px)';
-            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        });
-
-        var observer = new IntersectionObserver(function (entries, obs) {
-            entries.forEach(function (entry) {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                    obs.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.15 });
-
-        els.forEach(function (el) { observer.observe(el); });
-    }
-
-    /* ----------------------------------------------------------------------
-     * Lightbox simple pour les images de galerie
-     * -------------------------------------------------------------------- */
-    function initGalleryLightbox() {
-        var galleries = document.querySelectorAll('.ichraka-gallery, .wp-block-gallery');
-        if (!galleries.length) return;
-
-        var overlay = null;
-
-        galleries.forEach(function (gallery) {
-            gallery.addEventListener('click', function (e) {
-                var img = e.target.closest('img');
-                if (!img) return;
-                e.preventDefault();
-                openLightbox(img.src, img.alt || '');
-            });
-        });
-
-        function openLightbox(src, alt) {
-            if (!overlay) {
-                overlay = document.createElement('div');
-                overlay.className = 'ichraka-lightbox';
-                overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:9999;display:flex;align-items:center;justify-content:center;padding:2rem;cursor:zoom-out;';
-                overlay.setAttribute('role', 'dialog');
-                overlay.setAttribute('aria-modal', 'true');
-                overlay.addEventListener('click', closeLightbox);
-                document.body.appendChild(overlay);
-            }
-            overlay.innerHTML = '';
-            var image = new Image();
-            image.src = src;
-            image.alt = alt;
-            image.style.cssText = 'max-width:100%;max-height:100%;object-fit:contain;border-radius:8px;';
-            overlay.appendChild(image);
-            overlay.style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-            document.addEventListener('keydown', escClose);
-        }
-
-        function closeLightbox() {
-            if (!overlay) return;
-            overlay.style.display = 'none';
-            document.body.style.overflow = '';
-            document.removeEventListener('keydown', escClose);
-        }
-
-        function escClose(e) {
-            if (e.key === 'Escape') closeLightbox();
-        }
-    }
-
-    /* ----------------------------------------------------------------------
-     * Focus trap menu mobile (basique)
-     * -------------------------------------------------------------------- */
-    function initMobileMenuFocusTrap() {
-        var toggle = document.querySelector('.menu-toggle, .ast-mobile-menu-trigger-fill');
-        var menu = document.querySelector('#primary-menu, .main-header-menu');
-        if (!toggle || !menu) return;
-
-        toggle.addEventListener('click', function () {
-            setTimeout(function () {
-                if (menu.getAttribute('aria-expanded') === 'true' || menu.classList.contains('toggled-on')) {
-                    var first = menu.querySelector('a');
-                    if (first) first.focus();
-                }
-            }, 50);
         });
     }
 })();
