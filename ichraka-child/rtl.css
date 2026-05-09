@@ -1,0 +1,7 @@
+/*
+Theme Name: Ichraka Child — RTL
+Description: Auto-chargé par WordPress quand is_rtl() est vrai.
+             Le contenu réel est dans assets/css/rtl.css (chargé côté PHP).
+*/
+
+@import url('assets/css/rtl.css');

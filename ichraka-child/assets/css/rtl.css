@@ -1,0 +1,89 @@
+/* ==========================================================================
+   Ichraka — overrides RTL (arabe)
+   Chargé uniquement quand is_rtl() est vrai côté PHP.
+   ========================================================================== */
+
+body.rtl,
+body[dir="rtl"] {
+    font-family: var(--ichraka-font-arabic);
+    text-align: right;
+}
+
+body.rtl h1,
+body.rtl h2,
+body.rtl h3,
+body.rtl h4,
+body.rtl h5,
+body.rtl h6 {
+    font-family: var(--ichraka-font-arabic);
+    font-weight: 700;
+}
+
+/* Boutons : on conserve la même apparence — direction du texte naturelle */
+body.rtl .ichraka-btn {
+    letter-spacing: 0;
+}
+
+/* Hero — alignement centré conservé, ordre des CTA inversé */
+body.rtl .ichraka-hero__cta {
+    flex-direction: row-reverse;
+}
+
+/* Cartes — flèche du lien "En savoir plus" tournée */
+body.rtl .ichraka-card__link::after {
+    content: " ←";
+}
+body.rtl .ichraka-card__link {
+    direction: rtl;
+}
+
+/* Donate widget — bordure inversée */
+body.rtl .ichraka-donate-widget {
+    border-left: 0;
+    border-right: 4px solid var(--ichraka-accent);
+}
+
+/* Témoignages — guillemets inversés */
+body.rtl .ichraka-testimonial__quote::before {
+    content: "\201D";
+    margin-left: 0.25rem;
+    margin-right: 0;
+}
+
+/* Breadcrumbs — séparateurs */
+body.rtl .ichraka-breadcrumbs span[aria-hidden="true"] {
+    display: inline-block;
+    transform: rotate(180deg);
+}
+
+/* Header — bouton de don à gauche en RTL */
+body.rtl .ichraka-header-donate {
+    margin-left: 0;
+    margin-right: 1rem;
+}
+
+/* Listes — bullets à droite */
+body.rtl ul,
+body.rtl ol {
+    padding-right: 1.25rem;
+    padding-left: 0;
+}
+
+/* Formulaires */
+body.rtl .wpcf7-form-control,
+body.rtl .ichraka-basic-form input,
+body.rtl .ichraka-basic-form textarea {
+    text-align: right;
+}
+
+/* Footer — colonnes mêmes, mais les listes alignées à droite */
+body.rtl .ichraka-footer-widget {
+    text-align: right;
+}
+
+/* Compteurs — chiffres latins conservés (lisibilité) */
+body.rtl .ichraka-counter__number {
+    direction: ltr;
+    unicode-bidi: bidi-override;
+    display: inline-block;
+}

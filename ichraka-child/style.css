@@ -1,0 +1,601 @@
+/*
+Theme Name:        Ichraka Child
+Theme URI:         https://www.ichraka.ma
+Description:       Thème enfant Astra pour l'Association Ichraka — site officiel.
+                   Charte graphique orange/bleu/vert, support RTL arabe, optimisé performance.
+Author:            Association Ichraka
+Author URI:        https://www.ichraka.ma
+Template:          astra
+Version:           1.0.0
+Requires at least: 6.5
+Tested up to:      6.5
+Requires PHP:      8.1
+License:           GPL-2.0-or-later
+License URI:       https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain:       ichraka
+Tags:              non-profit, education, charity, rtl-language-support, translation-ready
+*/
+
+/* ==========================================================================
+   Variables CSS — Charte graphique Ichraka
+   ========================================================================== */
+:root {
+    --ichraka-primary: #E8780A;
+    --ichraka-primary-dark: #C4640A;
+    --ichraka-primary-light: #FFA640;
+    --ichraka-secondary: #2980B9;
+    --ichraka-secondary-dark: #1F5F8B;
+    --ichraka-accent: #27AE60;
+    --ichraka-accent-dark: #1E8449;
+
+    --ichraka-text: #2C3E50;
+    --ichraka-text-light: #5D6D7E;
+    --ichraka-bg: #FFFFFF;
+    --ichraka-bg-soft: #FDF6EE;
+    --ichraka-bg-section: #F8F9FA;
+    --ichraka-border: #E5E7EB;
+
+    --ichraka-font-heading: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+    --ichraka-font-body: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+    --ichraka-font-arabic: 'Cairo', 'Tajawal', 'Segoe UI', sans-serif;
+
+    --ichraka-radius: 8px;
+    --ichraka-radius-lg: 16px;
+    --ichraka-shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+    --ichraka-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --ichraka-shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.12);
+    --ichraka-transition: all 0.25s ease-in-out;
+
+    --ichraka-container: 1200px;
+    --ichraka-container-narrow: 880px;
+}
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+body {
+    font-family: var(--ichraka-font-body);
+    color: var(--ichraka-text);
+    line-height: 1.65;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6,
+.entry-title,
+.site-title {
+    font-family: var(--ichraka-font-heading);
+    font-weight: 700;
+    color: var(--ichraka-text);
+    line-height: 1.25;
+}
+
+h1 { font-size: clamp(2rem, 4vw, 3rem); }
+h2 { font-size: clamp(1.6rem, 3vw, 2.25rem); }
+h3 { font-size: clamp(1.3rem, 2.5vw, 1.75rem); }
+
+a {
+    color: var(--ichraka-primary);
+    text-decoration: none;
+    transition: var(--ichraka-transition);
+}
+a:hover,
+a:focus {
+    color: var(--ichraka-primary-dark);
+    text-decoration: underline;
+}
+
+/* RTL support — arabe */
+body.rtl,
+body[dir="rtl"] {
+    font-family: var(--ichraka-font-arabic);
+}
+body.rtl h1, body.rtl h2, body.rtl h3,
+body.rtl h4, body.rtl h5, body.rtl h6 {
+    font-family: var(--ichraka-font-arabic);
+    font-weight: 700;
+}
+
+/* ==========================================================================
+   Boutons
+   ========================================================================== */
+.ichraka-btn,
+.wp-block-button__link.is-style-ichraka,
+.btn-ichraka {
+    display: inline-block;
+    padding: 0.85rem 1.75rem;
+    font-family: var(--ichraka-font-heading);
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-radius: var(--ichraka-radius);
+    border: 2px solid transparent;
+    cursor: pointer;
+    text-decoration: none !important;
+    transition: var(--ichraka-transition);
+    text-align: center;
+    line-height: 1.2;
+}
+
+.ichraka-btn--primary {
+    background-color: var(--ichraka-primary);
+    color: #fff;
+}
+.ichraka-btn--primary:hover {
+    background-color: var(--ichraka-primary-dark);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: var(--ichraka-shadow);
+}
+
+.ichraka-btn--donate {
+    background-color: var(--ichraka-accent);
+    color: #fff;
+    box-shadow: 0 4px 14px rgba(39, 174, 96, 0.35);
+}
+.ichraka-btn--donate:hover {
+    background-color: var(--ichraka-accent-dark);
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+.ichraka-btn--outline {
+    background-color: transparent;
+    color: var(--ichraka-primary);
+    border-color: var(--ichraka-primary);
+}
+.ichraka-btn--outline:hover {
+    background-color: var(--ichraka-primary);
+    color: #fff;
+}
+
+/* Bouton "Faire un don" sticky dans le header */
+.ichraka-header-donate {
+    position: relative;
+    margin-left: 1rem;
+}
+body.rtl .ichraka-header-donate {
+    margin-left: 0;
+    margin-right: 1rem;
+}
+
+/* ==========================================================================
+   Layout & containers
+   ========================================================================== */
+.ichraka-container {
+    max-width: var(--ichraka-container);
+    margin: 0 auto;
+    padding: 0 1.25rem;
+}
+.ichraka-container--narrow {
+    max-width: var(--ichraka-container-narrow);
+}
+
+.ichraka-section {
+    padding: clamp(3rem, 6vw, 5rem) 0;
+}
+.ichraka-section--soft {
+    background-color: var(--ichraka-bg-soft);
+}
+.ichraka-section--gray {
+    background-color: var(--ichraka-bg-section);
+}
+
+.ichraka-section-title {
+    text-align: center;
+    margin-bottom: 3rem;
+    position: relative;
+}
+.ichraka-section-title::after {
+    content: "";
+    display: block;
+    width: 64px;
+    height: 4px;
+    background: var(--ichraka-primary);
+    margin: 1rem auto 0;
+    border-radius: 2px;
+}
+
+/* ==========================================================================
+   Hero d'accueil
+   ========================================================================== */
+.ichraka-hero {
+    position: relative;
+    padding: clamp(4rem, 10vw, 8rem) 1.25rem;
+    background: linear-gradient(135deg, #FFF4E5 0%, #FFE0B3 100%);
+    overflow: hidden;
+    text-align: center;
+}
+.ichraka-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url('assets/images/hero-bg.svg');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.15;
+    pointer-events: none;
+}
+.ichraka-hero__inner {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+}
+.ichraka-hero__title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    color: var(--ichraka-primary-dark);
+    margin-bottom: 1rem;
+}
+.ichraka-hero__tagline {
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    color: var(--ichraka-text);
+    margin-bottom: 2rem;
+    font-style: italic;
+}
+.ichraka-hero__cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+}
+
+/* ==========================================================================
+   Cartes "Actions phares"
+   ========================================================================== */
+.ichraka-actions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.75rem;
+}
+
+.ichraka-card {
+    background: #fff;
+    border-radius: var(--ichraka-radius-lg);
+    box-shadow: var(--ichraka-shadow);
+    overflow: hidden;
+    transition: var(--ichraka-transition);
+    display: flex;
+    flex-direction: column;
+}
+.ichraka-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--ichraka-shadow-lg);
+}
+.ichraka-card__media {
+    aspect-ratio: 16 / 9;
+    background: var(--ichraka-bg-soft);
+    overflow: hidden;
+}
+.ichraka-card__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+.ichraka-card:hover .ichraka-card__media img {
+    transform: scale(1.05);
+}
+.ichraka-card__body {
+    padding: 1.5rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+.ichraka-card__icon {
+    font-size: 2.5rem;
+    color: var(--ichraka-primary);
+    margin-bottom: 0.75rem;
+}
+.ichraka-card__title {
+    font-size: 1.25rem;
+    margin: 0 0 0.75rem;
+    color: var(--ichraka-text);
+}
+.ichraka-card__excerpt {
+    color: var(--ichraka-text-light);
+    flex: 1;
+    margin-bottom: 1rem;
+}
+.ichraka-card__link {
+    font-weight: 600;
+    color: var(--ichraka-primary);
+}
+
+/* ==========================================================================
+   Compteurs animés
+   ========================================================================== */
+.ichraka-counters {
+    background: linear-gradient(135deg, var(--ichraka-secondary) 0%, var(--ichraka-secondary-dark) 100%);
+    color: #fff;
+    padding: 4rem 0;
+}
+.ichraka-counters-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    text-align: center;
+}
+.ichraka-counter__number {
+    font-family: var(--ichraka-font-heading);
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-weight: 700;
+    color: var(--ichraka-primary-light);
+    line-height: 1;
+    display: block;
+}
+.ichraka-counter__label {
+    font-size: 1rem;
+    margin-top: 0.5rem;
+    opacity: 0.95;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* ==========================================================================
+   Témoignages
+   ========================================================================== */
+.ichraka-testimonials {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.75rem;
+}
+.ichraka-testimonial {
+    background: #fff;
+    padding: 2rem;
+    border-radius: var(--ichraka-radius-lg);
+    box-shadow: var(--ichraka-shadow);
+    position: relative;
+    border-top: 4px solid var(--ichraka-primary);
+}
+.ichraka-testimonial__quote {
+    font-style: italic;
+    color: var(--ichraka-text);
+    margin-bottom: 1.25rem;
+}
+.ichraka-testimonial__quote::before {
+    content: "\201C";
+    font-size: 3rem;
+    color: var(--ichraka-primary);
+    line-height: 0;
+    vertical-align: -0.4em;
+    margin-right: 0.25rem;
+}
+.ichraka-testimonial__author {
+    font-weight: 600;
+    color: var(--ichraka-secondary-dark);
+}
+.ichraka-testimonial__role {
+    font-size: 0.9rem;
+    color: var(--ichraka-text-light);
+}
+
+/* ==========================================================================
+   CPT — Opérations / Projets
+   ========================================================================== */
+.ichraka-operations-grid,
+.ichraka-projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.75rem;
+    margin-top: 2rem;
+}
+
+.ichraka-operation,
+.ichraka-project {
+    background: #fff;
+    border-radius: var(--ichraka-radius-lg);
+    overflow: hidden;
+    box-shadow: var(--ichraka-shadow);
+    transition: var(--ichraka-transition);
+}
+.ichraka-operation:hover,
+.ichraka-project:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--ichraka-shadow-lg);
+}
+.ichraka-operation__title,
+.ichraka-project__title {
+    padding: 1rem 1.5rem 0;
+    font-size: 1.2rem;
+    color: var(--ichraka-secondary-dark);
+}
+.ichraka-operation__excerpt,
+.ichraka-project__excerpt {
+    padding: 0.5rem 1.5rem 1.5rem;
+    color: var(--ichraka-text-light);
+}
+
+/* ==========================================================================
+   Bureau (équipe)
+   ========================================================================== */
+.ichraka-team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+.ichraka-team-member {
+    text-align: center;
+    background: #fff;
+    padding: 1.75rem 1rem;
+    border-radius: var(--ichraka-radius-lg);
+    box-shadow: var(--ichraka-shadow-sm);
+    transition: var(--ichraka-transition);
+}
+.ichraka-team-member:hover {
+    box-shadow: var(--ichraka-shadow);
+    transform: translateY(-3px);
+}
+.ichraka-team-member__avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin: 0 auto 1rem;
+    background: var(--ichraka-bg-soft);
+    border: 3px solid var(--ichraka-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--ichraka-primary);
+    overflow: hidden;
+}
+.ichraka-team-member__avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.ichraka-team-member__name {
+    font-weight: 700;
+    margin: 0;
+    color: var(--ichraka-text);
+}
+.ichraka-team-member__role {
+    color: var(--ichraka-primary);
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* ==========================================================================
+   Galerie photos
+   ========================================================================== */
+.ichraka-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 0.75rem;
+}
+.ichraka-gallery img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: var(--ichraka-radius);
+    cursor: pointer;
+    transition: var(--ichraka-transition);
+}
+.ichraka-gallery img:hover {
+    transform: scale(1.03);
+    box-shadow: var(--ichraka-shadow);
+}
+
+/* ==========================================================================
+   Page Don
+   ========================================================================== */
+.ichraka-donation-block {
+    max-width: 720px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 2.5rem;
+    border-radius: var(--ichraka-radius-lg);
+    box-shadow: var(--ichraka-shadow);
+    border-top: 6px solid var(--ichraka-accent);
+    text-align: center;
+}
+
+/* ==========================================================================
+   Formulaire de contact CF7
+   ========================================================================== */
+.wpcf7 {
+    max-width: 720px;
+    margin: 0 auto;
+}
+.wpcf7-form-control {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--ichraka-border);
+    border-radius: var(--ichraka-radius);
+    font-family: inherit;
+    font-size: 1rem;
+    transition: var(--ichraka-transition);
+}
+.wpcf7-form-control:focus {
+    border-color: var(--ichraka-primary);
+    outline: 0;
+    box-shadow: 0 0 0 3px rgba(232, 120, 10, 0.15);
+}
+.wpcf7-submit {
+    width: auto !important;
+    background: var(--ichraka-primary);
+    color: #fff;
+    border: 0 !important;
+    cursor: pointer;
+}
+.wpcf7-submit:hover {
+    background: var(--ichraka-primary-dark);
+}
+
+/* ==========================================================================
+   Breadcrumbs
+   ========================================================================== */
+.ichraka-breadcrumbs {
+    background: var(--ichraka-bg-section);
+    padding: 0.75rem 0;
+    font-size: 0.9rem;
+    color: var(--ichraka-text-light);
+    border-bottom: 1px solid var(--ichraka-border);
+}
+.ichraka-breadcrumbs a {
+    color: var(--ichraka-secondary);
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+.ichraka-footer {
+    background: #1F2937;
+    color: #D1D5DB;
+    padding: 3rem 0 1.5rem;
+}
+.ichraka-footer h4 {
+    color: #fff;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+.ichraka-footer a {
+    color: #D1D5DB;
+}
+.ichraka-footer a:hover {
+    color: var(--ichraka-primary-light);
+}
+.ichraka-footer__bottom {
+    border-top: 1px solid #374151;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #9CA3AF;
+}
+
+/* ==========================================================================
+   Accessibilité & utilitaires
+   ========================================================================== */
+.screen-reader-text {
+    position: absolute !important;
+    clip: rect(1px, 1px, 1px, 1px);
+    width: 1px; height: 1px;
+    overflow: hidden;
+}
+*:focus-visible {
+    outline: 3px solid var(--ichraka-primary);
+    outline-offset: 2px;
+}
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+@media (max-width: 768px) {
+    .ichraka-section { padding: 2.5rem 0; }
+    .ichraka-hero { padding: 3rem 1rem; }
+    .ichraka-hero__cta { flex-direction: column; align-items: stretch; }
+    .ichraka-btn { width: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}
