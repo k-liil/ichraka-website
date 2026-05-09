@@ -45,10 +45,10 @@ function ichraka_after_setup_theme() {
     add_theme_support( 'align-wide' );
     add_theme_support( 'editor-styles' );
 
-    // Tailles d'images dédiées au site Ichraka.
-    add_image_size( 'ichraka-hero', 1920, 800, true );
-    add_image_size( 'ichraka-card', 720, 405, true );
-    add_image_size( 'ichraka-thumb', 360, 240, true );
+    // Tailles d'images dédiées au site Ichraka (Joyeux).
+    add_image_size( 'ichraka-hero', 960, 1200, true );  // 4:5 portrait pour le hero
+    add_image_size( 'ichraka-card', 720, 540, true );   // 4:3 pour les cartes opérations
+    add_image_size( 'ichraka-thumb', 360, 270, true );  // 4:3 pour les thumbs
 
     // Menus dédiés.
     register_nav_menus( array(
