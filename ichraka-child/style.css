@@ -333,6 +333,21 @@ a:hover .arrow { transform: translate(3px, -3px); }
 .ichraka-logo-mark .r2 { top: 6px; right: -3px; background: var(--mint); }
 .ichraka-logo-mark .r3 { bottom: -3px; left: 6px; background: var(--sky); }
 
+/* Logo image (quand uploadé via Customizer ou option) */
+.ichraka-logo-img {
+    max-height: 50px;
+    width: auto;
+    height: auto;
+    display: block;
+}
+.ichraka-footer .ichraka-logo-img {
+    max-height: 60px;
+    /* Force visibility on dark bg — original logo is colored, no filter needed */
+    background: rgba(255, 246, 226, 0.06);
+    padding: 4px 8px;
+    border-radius: var(--r-sm);
+}
+
 .ichraka-nav-links {
     display: flex;
     gap: 2rem;
