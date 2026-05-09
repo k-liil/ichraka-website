@@ -26,7 +26,7 @@ get_header();
                 /* Titre par défaut. Modifiable via Réglages → Général. */
                 $hero_title = get_option(
                     'ichraka_hero_title',
-                    __( 'Allumons<br>des <em>sourires</em>,<br>un cartable<br><span class="coral">à la fois.</span>', 'ichraka' )
+                    __( 'Allumons<br>des <span style="white-space:nowrap;"><em>sourires</em>,</span><br>un cartable<br><span class="coral">à la fois.</span>', 'ichraka' )
                 );
                 echo wp_kses_post( $hero_title );
                 ?>
