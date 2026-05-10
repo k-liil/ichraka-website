@@ -28,7 +28,7 @@ $status_labels = array(
     <div class="shell">
         <?php while ( have_posts() ) : the_post(); ?>
             <header class="ichraka-page-header">
-                <span class="eyebrow coral">★ <?php esc_html_e( 'Nos projets', 'ichraka' ); ?></span>
+                <span class="eyebrow coral"><?php esc_html_e( 'Nos projets', 'ichraka' ); ?></span>
                 <h1 class="display" style="margin-top: 1.5rem;"><?php the_title(); ?></h1>
             </header>
             <?php $content = get_the_content();

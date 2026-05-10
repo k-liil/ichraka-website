@@ -104,7 +104,7 @@ function ichraka_sc_mission() {
             </div>
 
             <div class="mission-body">
-                <span class="eyebrow coral">★ <?php esc_html_e( 'Notre conviction', 'ichraka' ); ?></span>
+                <span class="eyebrow coral"><?php esc_html_e( 'Notre conviction', 'ichraka' ); ?></span>
                 <p class="mission-quote">
                     <?php echo wp_kses_post( $quote_html ); ?>
                 </p>
@@ -244,7 +244,7 @@ function ichraka_sc_impact_counters() {
 
         <div class="section-head">
             <div>
-                <span class="eyebrow yellow">★ <?php esc_html_e( 'Notre impact', 'ichraka' ); ?></span>
+                <span class="eyebrow yellow"><?php esc_html_e( 'Notre impact', 'ichraka' ); ?></span>
                 <h2 class="display" style="margin-top: 1.4rem;">
                     <?php esc_html_e( 'Mesuré.', 'ichraka' ); ?><br>
                     <span class="hl"><?php esc_html_e( 'Publié.', 'ichraka' ); ?></span><br>
@@ -412,7 +412,7 @@ function ichraka_sc_donate_block() {
 
         <div class="donate-grid">
             <div>
-                <span class="eyebrow yellow">★ <?php esc_html_e( 'Faire un don', 'ichraka' ); ?></span>
+                <span class="eyebrow yellow"><?php esc_html_e( 'Faire un don', 'ichraka' ); ?></span>
                 <h2 class="display" style="margin-top: 1.4rem;">
                     <?php esc_html_e( 'Un cartable.', 'ichraka' ); ?><br>
                     <?php esc_html_e( 'Un enfant.', 'ichraka' ); ?><br>
@@ -483,7 +483,7 @@ function ichraka_sc_newsletter() {
         <svg class="nl-deco" style="color: var(--ink);" aria-hidden="true"><use href="#ic-sparkle"/></svg>
         <div class="nl-grid">
             <div>
-                <span class="eyebrow" style="background: var(--ink); color: var(--mint);">★ <?php esc_html_e( 'Restez avec nous', 'ichraka' ); ?></span>
+                <span class="eyebrow" style="background: var(--ink); color: var(--mint);"><?php esc_html_e( 'Restez avec nous', 'ichraka' ); ?></span>
                 <h3 style="margin-top: 1.2rem;">
                     <?php esc_html_e( 'Recevez nos carnets', 'ichraka' ); ?><br>
                     <?php esc_html_e( 'de mission,', 'ichraka' ); ?>
@@ -492,8 +492,14 @@ function ichraka_sc_newsletter() {
             </div>
             <div>
                 <form class="nl-form" action="<?php echo esc_url( $action ); ?>" method="post"
-                      onsubmit="event.preventDefault(); this.querySelector('input').value=''; this.querySelector('button').textContent='<?php echo esc_js( __( 'Merci ✓', 'ichraka' ) ); ?>';">
-                    <input type="email" name="email" placeholder="<?php esc_attr_e( 'votre@email.com', 'ichraka' ); ?>" required />
+                      onsubmit="event.preventDefault(); var b=this.querySelector('button'); b.disabled=true; b.textContent='<?php echo esc_js( __( 'Envoi…', 'ichraka' ) ); ?>'; var f=this; setTimeout(function(){ f.querySelector('input').value=''; b.textContent='<?php echo esc_js( __( 'Merci ✓', 'ichraka' ) ); ?>'; }, 600);">
+                    <label for="ichraka-nl-email" class="screen-reader-text">
+                        <?php esc_html_e( 'Votre adresse email', 'ichraka' ); ?>
+                    </label>
+                    <input id="ichraka-nl-email" type="email" name="email"
+                           placeholder="<?php esc_attr_e( 'votre@email.com', 'ichraka' ); ?>"
+                           autocomplete="email"
+                           required />
                     <button type="submit" class="btn btn-primary"><?php esc_html_e( "S'abonner", 'ichraka' ); ?></button>
                 </form>
                 <p style="margin-top: 0.8rem; font-size: 0.82rem; color: rgba(20, 33, 61, 0.7);">

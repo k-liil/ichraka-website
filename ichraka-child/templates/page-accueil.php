@@ -20,7 +20,7 @@ get_header();
 <header class="ichraka-hero">
     <div class="ichraka-hero-grid">
         <div>
-            <span class="eyebrow yellow">★ <?php esc_html_e( 'Asso · 2008 · Maroc', 'ichraka' ); ?></span>
+            <span class="eyebrow yellow"><?php esc_html_e( 'Asso · 2008 · Maroc', 'ichraka' ); ?></span>
             <h1 class="display ichraka-hero-title">
                 <?php
                 /* Titre par défaut. Modifiable via Réglages → Général. */
@@ -83,7 +83,7 @@ get_header();
 <section class="shell" id="operations">
     <div class="section-head">
         <div>
-            <span class="eyebrow mint">★ <?php esc_html_e( 'Nos opérations', 'ichraka' ); ?></span>
+            <span class="eyebrow mint"><?php esc_html_e( 'Nos opérations', 'ichraka' ); ?></span>
             <h2 class="display" style="margin-top: 1.4rem;">
                 <?php esc_html_e( 'Trois', 'ichraka' ); ?><br>
                 <?php esc_html_e( 'rendez-vous,', 'ichraka' ); ?><br>
@@ -109,7 +109,7 @@ get_header();
 <section class="shell" id="story">
     <div class="section-head">
         <div>
-            <span class="eyebrow sky">★ <?php esc_html_e( 'Notre histoire', 'ichraka' ); ?></span>
+            <span class="eyebrow sky"><?php esc_html_e( 'Notre histoire', 'ichraka' ); ?></span>
             <h2 class="display" style="margin-top: 1.4rem;">
                 <?php esc_html_e( 'Depuis 2008,', 'ichraka' ); ?><br>
                 <?php esc_html_e( 'une lumière', 'ichraka' ); ?><br>
@@ -132,7 +132,7 @@ if ( $temoignages_count && $temoignages_count->publish > 0 ) : ?>
     <div class="testimonials">
         <div class="section-head">
             <div>
-                <span class="eyebrow yellow">★ <?php esc_html_e( 'Ils nous font confiance', 'ichraka' ); ?></span>
+                <span class="eyebrow yellow"><?php esc_html_e( 'Ils nous font confiance', 'ichraka' ); ?></span>
                 <h2 class="display" style="margin-top: 1.4rem;">
                     <?php esc_html_e( 'Voix du', 'ichraka' ); ?><br>
                     <?php esc_html_e( 'terrain.', 'ichraka' ); ?>
@@ -163,7 +163,7 @@ if ( $news->have_posts() ) : ?>
 <section class="shell" id="actualites">
     <div class="section-head">
         <div>
-            <span class="eyebrow coral">★ <?php esc_html_e( 'Actualités', 'ichraka' ); ?></span>
+            <span class="eyebrow coral"><?php esc_html_e( 'Actualités', 'ichraka' ); ?></span>
             <h2 class="display" style="margin-top: 1.4rem;">
                 <?php esc_html_e( 'Sur le', 'ichraka' ); ?><br>
                 <?php esc_html_e( 'terrain.', 'ichraka' ); ?>

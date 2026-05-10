@@ -17,7 +17,7 @@ get_header();
 
         <?php while ( have_posts() ) : the_post(); ?>
             <header class="ichraka-page-header">
-                <span class="eyebrow mint">★ <?php esc_html_e( 'Nos opérations', 'ichraka' ); ?></span>
+                <span class="eyebrow mint"><?php esc_html_e( 'Nos opérations', 'ichraka' ); ?></span>
                 <h1 class="display" style="margin-top: 1.5rem;"><?php the_title(); ?></h1>
                 <?php $excerpt = get_the_excerpt();
                 if ( $excerpt ) : ?>

@@ -18,7 +18,7 @@ $give_form_id = (int) get_option( 'ichraka_give_form_id', 0 );
     <div class="shell">
         <?php while ( have_posts() ) : the_post(); ?>
             <header class="ichraka-page-header">
-                <span class="eyebrow coral">★ <?php esc_html_e( 'Faire un don', 'ichraka' ); ?></span>
+                <span class="eyebrow coral"><?php esc_html_e( 'Faire un don', 'ichraka' ); ?></span>
                 <h1 class="display" style="margin-top: 1.5rem;"><?php the_title(); ?></h1>
             </header>
             <div class="entry-content"><?php the_content(); ?></div>

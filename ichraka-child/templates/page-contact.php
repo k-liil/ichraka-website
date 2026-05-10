@@ -22,7 +22,7 @@ $address  = get_option( 'ichraka_contact_address', __( 'Témara, Maroc', 'ichrak
     <div class="shell">
         <?php while ( have_posts() ) : the_post(); ?>
             <header class="ichraka-page-header">
-                <span class="eyebrow sky">★ <?php esc_html_e( 'Contact', 'ichraka' ); ?></span>
+                <span class="eyebrow sky"><?php esc_html_e( 'Contact', 'ichraka' ); ?></span>
                 <h1 class="display" style="margin-top: 1.5rem;"><?php the_title(); ?></h1>
             </header>
         <?php endwhile; ?>

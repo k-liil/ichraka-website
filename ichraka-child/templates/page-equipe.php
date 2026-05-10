@@ -16,7 +16,7 @@ get_header();
     <div class="shell">
         <?php while ( have_posts() ) : the_post(); ?>
             <header class="ichraka-page-header">
-                <span class="eyebrow yellow">★ <?php esc_html_e( "L'équipe", 'ichraka' ); ?></span>
+                <span class="eyebrow yellow"><?php esc_html_e( "L'équipe", 'ichraka' ); ?></span>
                 <h1 class="display" style="margin-top: 1.5rem;"><?php the_title(); ?></h1>
             </header>
             <?php $content = get_the_content();

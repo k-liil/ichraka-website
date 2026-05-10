@@ -152,6 +152,23 @@ body.rtl h4, body.rtl h5, body.rtl h6 {
     padding: 0.45rem 0.9rem;
     border-radius: 999px;
 }
+/* Étoile SVG en mask — couleur héritée via currentColor (skill: no-emoji-icons) */
+.eyebrow::before {
+    content: "";
+    display: inline-block;
+    width: 0.85em;
+    height: 0.85em;
+    background: currentColor;
+    -webkit-mask-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M32 4 L37 27 L60 32 L37 37 L32 60 L27 37 L4 32 L27 27 Z'/%3E%3C/svg%3E");
+    mask-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M32 4 L37 27 L60 32 L37 37 L32 60 L27 37 L4 32 L27 27 Z'/%3E%3C/svg%3E");
+    -webkit-mask-size: contain;
+            mask-size: contain;
+    -webkit-mask-position: center;
+            mask-position: center;
+    -webkit-mask-repeat: no-repeat;
+            mask-repeat: no-repeat;
+    flex-shrink: 0;
+}
 .eyebrow.yellow { background: var(--yellow); color: var(--ink); }
 .eyebrow.coral  { background: var(--coral);  color: white; }
 .eyebrow.mint   { background: var(--mint);   color: var(--ink); }
