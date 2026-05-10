@@ -80,6 +80,7 @@ function ichraka_sc_mission() {
     ob_start();
     ?>
     <section class="ichraka-mission" id="notre-conviction">
+        <svg class="mission-deco" style="color: var(--yellow);" aria-hidden="true"><use href="#ic-blob"/></svg>
         <div class="mission-grid">
 
             <div class="mission-portrait">
@@ -103,7 +104,7 @@ function ichraka_sc_mission() {
             </div>
 
             <div class="mission-body">
-                <span class="eyebrow eyebrow--coral">★ <?php esc_html_e( 'Notre conviction', 'ichraka' ); ?></span>
+                <span class="eyebrow coral">★ <?php esc_html_e( 'Notre conviction', 'ichraka' ); ?></span>
                 <p class="mission-quote">
                     <?php echo wp_kses_post( $quote_html ); ?>
                 </p>

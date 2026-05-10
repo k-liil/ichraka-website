@@ -563,13 +563,31 @@ a:hover .arrow { transform: translate(3px, -3px); }
 }
 
 /* ==========================================================================
-   Mission — section "Notre conviction" (portrait + texte)
+   Mission — section "Notre conviction" (portrait + texte) avec box cream-2
    ========================================================================== */
 .ichraka-mission {
-    padding-block: clamp(5rem, 9vw, 9rem);
-    padding-inline: clamp(1.25rem, 4vw, 4rem);
-    max-width: 1480px;
+    background: var(--cream-2);
+    border-radius: var(--r-xl);
+    margin-block: clamp(3rem, 6vw, 6rem);
     margin-inline: auto;
+    max-width: min(calc(100% - 2 * var(--shell-pad)), 1480px);
+    padding: clamp(3rem, 6vw, 5rem) clamp(2rem, 4vw, 4rem);
+    position: relative;
+    overflow: hidden;
+}
+.mission-deco {
+    position: absolute;
+    right: -40px;
+    top: -40px;
+    width: 220px;
+    height: 220px;
+    opacity: 0.5;
+    pointer-events: none;
+    z-index: 0;
+}
+.ichraka-mission > .mission-grid {
+    position: relative;
+    z-index: 1;
 }
 .ichraka-mission .mission-grid {
     display: grid;
@@ -652,11 +670,7 @@ a:hover .arrow { transform: translate(3px, -3px); }
     font-style: italic;
     color: var(--ink);
 }
-.ichraka-mission .eyebrow--coral {
-    background: transparent;
-    color: var(--coral);
-    padding: 0;
-}
+/* Note : on garde l'eyebrow coral en pill (style par défaut .eyebrow.coral) */
 .mission-quote {
     font-family: var(--font-display);
     font-weight: 600;
