@@ -69,7 +69,7 @@ function ichraka_sc_mission() {
         __( 'Aucune <span class="hl-yellow">rentrée</span> ne devrait dépendre d\'un cartable absent. Aucun hiver d\'un <span class="hl-coral">manteau</span> manquant.', 'ichraka' )
     );
     $author      = get_option( 'ichraka_mission_author', 'Safae Boujendar' );
-    $author_role = get_option( 'ichraka_mission_role', __( 'Présidente fondatrice', 'ichraka' ) );
+    $author_role = get_option( 'ichraka_mission_role', __( "Présidente de l'association", 'ichraka' ) );
     $body        = get_option(
         'ichraka_mission_body',
         __( "<p>Ichraka — <em>« la lumière qui se lève »</em> en arabe — est née en 2008 d'un constat simple : à quelques kilomètres des grandes villes, des enfants quittent l'école faute d'un cartable, d'une vue corrigée, d'un vêtement chaud pour tenir l'hiver.</p><p>Trois opérations annuelles, un calendrier joyeux, un seul objectif : que chaque enfant que nous croisons ait sa <em>chance</em> de s'asseoir en classe avec ce qu'il faut pour apprendre.</p><p>Et chaque dirham est tracé. Chaque opération est documentée. Chaque bénéficiaire est suivi. La transparence n'est pas une option, c'est notre pacte.</p>", 'ichraka' )
