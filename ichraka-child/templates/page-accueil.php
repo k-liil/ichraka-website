@@ -76,10 +76,8 @@ get_header();
     <?php echo do_shortcode( '[ichraka_hero_pillars]' ); ?>
 </header>
 
-<?php // ============ MISSION ============ ?>
-<section id="mission">
-    <?php echo do_shortcode( '[ichraka_mission]' ); ?>
-</section>
+<?php // ============ MISSION (Notre conviction — portrait + texte) ============ ?>
+<?php echo do_shortcode( '[ichraka_mission]' ); ?>
 
 <?php // ============ OPÉRATIONS ============ ?>
 <section class="shell" id="operations">

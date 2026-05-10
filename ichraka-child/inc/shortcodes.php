@@ -72,34 +72,46 @@ function ichraka_sc_mission() {
     $author_role = get_option( 'ichraka_mission_role', __( 'Présidente fondatrice', 'ichraka' ) );
     $body        = get_option(
         'ichraka_mission_body',
-        __( "<p>Ichraka — <em>« la lumière qui se lève »</em> en arabe — est née en 2008 d'un constat simple : à quelques kilomètres des grandes villes, des enfants quittent l'école faute d'un cartable, d'une vue corrigée, d'un vêtement chaud pour tenir l'hiver.</p><p>Trois opérations annuelles, un calendrier joyeux, un seul objectif : que chaque enfant que nous croisons ait sa <em>chance</em> de s'asseoir en classe avec ce qu'il faut pour apprendre. Bénévoles, parrains, familles — nous avançons ensemble.</p><p>Et chaque dirham est tracé. Chaque opération est documentée. Chaque bénéficiaire est suivi. La transparence n'est pas une option, c'est notre pacte.</p>", 'ichraka' )
+        __( "<p>Ichraka — <em>« la lumière qui se lève »</em> en arabe — est née en 2008 d'un constat simple : à quelques kilomètres des grandes villes, des enfants quittent l'école faute d'un cartable, d'une vue corrigée, d'un vêtement chaud pour tenir l'hiver.</p><p>Trois opérations annuelles, un calendrier joyeux, un seul objectif : que chaque enfant que nous croisons ait sa <em>chance</em> de s'asseoir en classe avec ce qu'il faut pour apprendre.</p><p>Et chaque dirham est tracé. Chaque opération est documentée. Chaque bénéficiaire est suivi. La transparence n'est pas une option, c'est notre pacte.</p>", 'ichraka' )
     );
 
-    $initials = ichraka_get_initials( $author );
+    $portrait_id = (int) get_option( 'ichraka_mission_portrait_id', 0 );
 
     ob_start();
     ?>
-    <div class="mission">
-        <svg class="mission-deco" style="color: var(--yellow);" aria-hidden="true"><use href="#ic-blob"/></svg>
+    <section class="ichraka-mission" id="notre-conviction">
         <div class="mission-grid">
-            <div>
-                <span class="eyebrow coral">★ <?php esc_html_e( 'Notre conviction', 'ichraka' ); ?></span>
-                <p class="mission-quote" style="margin-top: 1.5rem;">
-                    <?php echo wp_kses_post( $quote_html ); ?>
-                </p>
-                <div class="mission-author">
-                    <div class="mission-author-avatar"><?php echo esc_html( $initials ); ?></div>
-                    <div>
-                        <strong><?php echo esc_html( $author ); ?></strong>
-                        <?php echo esc_html( $author_role ); ?>
-                    </div>
+
+            <div class="mission-portrait">
+                <span class="portrait-quote-mark" aria-hidden="true">&ldquo;</span>
+                <div class="portrait-frame">
+                    <?php if ( $portrait_id ) :
+                        echo wp_get_attachment_image( $portrait_id, 'ichraka-hero', false, array(
+                            'alt'     => esc_attr( $author . ', ' . $author_role ),
+                            'loading' => 'lazy',
+                        ) );
+                    else : ?>
+                        <span style="display:flex;align-items:center;justify-content:center;width:100%;height:100%;color:var(--cream);font-family:var(--font-display);font-size:3rem;">
+                            <?php echo esc_html( ichraka_get_initials( $author ) ); ?>
+                        </span>
+                    <?php endif; ?>
+                </div>
+                <div class="portrait-tag">
+                    <?php echo esc_html( $author ); ?>
+                    <small><?php echo esc_html( $author_role ); ?></small>
                 </div>
             </div>
+
             <div class="mission-body">
+                <span class="eyebrow eyebrow--coral">★ <?php esc_html_e( 'Notre conviction', 'ichraka' ); ?></span>
+                <p class="mission-quote">
+                    <?php echo wp_kses_post( $quote_html ); ?>
+                </p>
                 <?php echo wp_kses_post( $body ); ?>
             </div>
+
         </div>
-    </div>
+    </section>
     <?php
     return ob_get_clean();
 }

@@ -563,38 +563,108 @@ a:hover .arrow { transform: translate(3px, -3px); }
 }
 
 /* ==========================================================================
-   Mission
+   Mission — section "Notre conviction" (portrait + texte)
    ========================================================================== */
-.mission {
-    background: var(--cream-2);
-    border-radius: var(--r-xl);
-    margin: 0 var(--shell-pad);
-    padding: 5rem 4rem;
-    position: relative;
-    overflow: hidden;
+.ichraka-mission {
+    padding-block: clamp(5rem, 9vw, 9rem);
+    padding-inline: clamp(1.25rem, 4vw, 4rem);
+    max-width: 1480px;
+    margin-inline: auto;
 }
-.mission-deco {
-    position: absolute;
-    right: -40px;
-    top: -40px;
-    width: 220px;
-    height: 220px;
-    opacity: 0.5;
-}
-.mission-grid {
+.ichraka-mission .mission-grid {
     display: grid;
-    grid-template-columns: 1fr 1.2fr;
-    gap: 4rem;
-    align-items: start;
+    grid-template-columns: 0.6fr 1.4fr;
+    gap: clamp(2rem, 5vw, 5rem);
+    align-items: center;
+}
+
+/* Portrait — colonne gauche */
+.mission-portrait {
     position: relative;
+    align-self: center;
+    max-width: 320px;
+}
+.mission-portrait .portrait-frame {
+    aspect-ratio: 4 / 5;
+    width: 100%;
+    border-radius: var(--r-lg);
+    overflow: hidden;
+    background: var(--ink);
+    box-shadow:
+        0 30px 60px -25px rgba(20, 33, 61, 0.35),
+        0 8px 20px -10px rgba(20, 33, 61, 0.15);
+    transform: rotate(-1.2deg);
+    transition: transform 0.4s cubic-bezier(.2, 0, 0, 1);
+}
+.mission-portrait .portrait-frame:hover { transform: rotate(0deg); }
+.mission-portrait .portrait-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+.mission-portrait .portrait-quote-mark {
+    position: absolute;
+    top: -22px;
+    right: 14px;
+    font-family: var(--font-display);
+    font-size: 5.5rem;
+    line-height: 0.6;
+    color: var(--coral);
     z-index: 1;
+}
+.mission-portrait .portrait-tag {
+    position: absolute;
+    bottom: 18px;
+    left: -12px;
+    background: var(--yellow);
+    color: var(--ink);
+    padding: 0.55rem 0.85rem 0.6rem;
+    border-radius: 12px;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.95rem;
+    line-height: 1.05;
+    max-width: 75%;
+    transform: rotate(-3deg);
+    box-shadow: 0 10px 24px -10px rgba(20, 33, 61, 0.35);
+    z-index: 2;
+}
+.mission-portrait .portrait-tag small {
+    display: block;
+    font-family: var(--font-sans);
+    font-weight: 500;
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-top: 3px;
+    color: rgba(20, 33, 61, 0.7);
+}
+
+/* Texte — colonne droite */
+.ichraka-mission .mission-body {
+    font-size: 1.05rem;
+    line-height: 1.65;
+    color: var(--ink-soft);
+}
+.ichraka-mission .mission-body p { margin: 0 0 1rem; }
+.ichraka-mission .mission-body em {
+    font-style: italic;
+    color: var(--ink);
+}
+.ichraka-mission .eyebrow--coral {
+    background: transparent;
+    color: var(--coral);
+    padding: 0;
 }
 .mission-quote {
     font-family: var(--font-display);
     font-weight: 600;
-    font-size: clamp(1.8rem, 3.2vw, 2.8rem);
-    line-height: 1.15;
+    font-size: clamp(1.6rem, 2.8vw, 2.4rem);
+    line-height: 1.18;
     letter-spacing: -0.02em;
+    color: var(--ink);
+    margin: 1.2rem 0 2rem;
     text-wrap: pretty;
 }
 .mission-quote .hl-yellow {
@@ -612,47 +682,18 @@ a:hover .arrow { transform: translate(3px, -3px); }
     display: inline-block;
     transform: rotate(1deg);
 }
-.mission-author {
-    margin-top: 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-    font-size: 0.95rem;
-    color: var(--ink-soft);
-}
-.mission-author-avatar {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: var(--yellow);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 800;
-    color: var(--ink);
-    flex-shrink: 0;
-    overflow: hidden;
-}
-.mission-author-avatar img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-.mission-author strong { color: var(--ink); display: block; }
-.mission-body {
-    font-size: 1.05rem;
-    color: var(--ink-soft);
-    line-height: 1.7;
-}
-.mission-body em {
-    color: var(--coral);
-    font-style: normal;
-    font-weight: 700;
-}
 
 @media (max-width: 880px) {
-    .mission { padding: 3rem 2rem; }
-    .mission-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .ichraka-mission .mission-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+    .mission-portrait {
+        max-width: 280px;
+        margin-inline: auto;
+    }
+    .mission-portrait .portrait-frame { transform: none; }
+    .mission-portrait .portrait-tag { left: 10px; bottom: 14px; }
 }
 
 /* ==========================================================================
